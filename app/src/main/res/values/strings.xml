@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Eesce</string>
+    <string name="favorites">Избранное</string>
+    <string name="movies">Кино</string>
 </resources>

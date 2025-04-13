@@ -1,6 +1,7 @@
 package com.example.eesce
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,19 +13,40 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.eesce.ui.theme.EesceTheme
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main) // Установка XML-разметки
         enableEdgeToEdge()
-        setContent {
-            EesceTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+
+        // MaterialToolbar
+        val topAppBar = findViewById<MaterialToolbar>(R.id.top)
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu -> {
+                    Toast.makeText(this, "Кино", Toast.LENGTH_SHORT).show()
+                    true
                 }
+                else -> false
+            }
+        }
+
+        // BottomNavigationView
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigation.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorites -> {
+                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.menu -> {
+                    Toast.makeText(this, "Кино", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
             }
         }
     }
