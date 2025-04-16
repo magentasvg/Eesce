@@ -50,8 +50,6 @@ class MainActivity : ComponentActivity() {
                 else -> false
             }
         }
-        val myAnimation = AnimationUtils.loadAnimation(this, R.anim.my_animation)
-        view.startAnimation(myAnimation)
     }
 }
 
